@@ -1,0 +1,29 @@
+{
+  "name": "pele-board",
+  "displayName": "Pele Board",
+  "version": "0.1.0",
+  "description": "Lets your agent show plans, processes, architecture and progress as live diagrams in your browser.",
+  "author": {
+    "name": "Ossian Ravn",
+    "url": "https://github.com/ossianravn"
+  },
+  "repository": "https://github.com/ossianravn/pele-agent-plugin",
+  "license": "MIT",
+  "keywords": [
+    "diagrams",
+    "mermaid",
+    "visualization",
+    "mcp"
+  ],
+  "mcpServers": {
+    "pele-board": {
+      "command": "node",
+      "args": [
+        "${CLAUDE_PLUGIN_ROOT}/dist/server.mjs"
+      ],
+      "env": {
+        "PELE_BOARD_PROJECT": "${CLAUDE_PROJECT_DIR}"
+      }
+    }
+  }
+}

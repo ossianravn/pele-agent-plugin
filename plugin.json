@@ -1,0 +1,30 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "pele-board",
+  "version": "0.1.0",
+  "description": "Lets your agent show plans, processes, architecture and progress as live diagrams in your browser.",
+  "author": {
+    "name": "Ossian Ravn",
+    "url": "https://github.com/ossianravn"
+  },
+  "repository": "https://github.com/ossianravn/pele-agent-plugin",
+  "license": "MIT",
+  "keywords": [
+    "diagrams",
+    "mermaid",
+    "visualization",
+    "mcp"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Pele Board",
+        "shortDescription": "See your agent's plans and processes as live diagrams.",
+        "longDescription": "Your agent draws plans, processes, architecture and progress as Mermaid diagrams, checks them, and shows them on a live page in your browser that updates as the work moves on. Rendered by pele.",
+        "developerName": "Ossian Ravn",
+        "category": "Productivity",
+        "defaultPrompt": "Show me a diagram of how this project is structured."
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "pele-board",
+  "description": "Live diagrams for Claude Code, rendered by pele.",
+  "owner": { "name": "Ossian Ravn", "url": "https://github.com/ossianravn" },
+  "plugins": [
+    {
+      "name": "pele-board",
+      "source": "./",
+      "description": "Lets your agent show plans, processes, architecture and progress as live diagrams in your browser."
+    }
+  ]
+}

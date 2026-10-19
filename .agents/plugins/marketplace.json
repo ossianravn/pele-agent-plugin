@@ -1,0 +1,12 @@
+{
+  "name": "pele-board",
+  "interface": { "displayName": "Pele Board" },
+  "plugins": [
+    {
+      "name": "pele-board",
+      "source": { "source": "local", "path": "./" },
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_INSTALL" },
+      "category": "Productivity"
+    }
+  ]
+}

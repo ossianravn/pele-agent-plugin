@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Diagrams</title>
+    <link rel="stylesheet" href="/board.css" />
+    <script src="/pele.global.js" defer></script>
+    <script src="/board.js" defer></script>
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <header class="sidebar-header">
+          <h1 id="project" class="project">Diagrams</h1>
+          <p id="status" class="status" data-state="connecting">Connecting…</p>
+        </header>
+        <nav aria-label="Diagrams">
+          <ol id="list" class="list"></ol>
+        </nav>
+      </aside>
+
+      <main class="main">
+        <section id="empty" class="empty">
+          <h2>No diagrams yet</h2>
+          <p>Diagrams your agent shows will appear here.</p>
+        </section>
+
+        <article id="view" class="view" hidden>
+          <header class="view-header">
+            <div class="view-heading">
+              <h2 id="title" class="title"></h2>
+              <p id="meta" class="meta"></p>
+            </div>
+            <div class="actions">
+              <button id="copy" type="button" class="button">Copy source</button>
+              <button id="download" type="button" class="button">Download SVG</button>
+            </div>
+          </header>
+          <p id="caption" class="caption" hidden></p>
+          <div id="stage" class="stage"></div>
+        </article>
+      </main>
+    </div>
+  </body>
+</html>

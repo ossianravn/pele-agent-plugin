@@ -1,0 +1,24 @@
+{
+  "name": "pele-board",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Lets Claude Code and Codex show you plans, processes and architecture as live diagrams.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc",
+    "check:examples": "node scripts/check-examples.mjs"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/sdk": "1.32.1",
+    "@types/node": "26.6.5",
+    "esbuild": "0.28.2",
+    "pele": "1.7.0",
+    "typescript": "7.0.2",
+    "zod": "4.6.7"
+  }
+}
