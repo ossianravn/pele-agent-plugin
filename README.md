@@ -159,15 +159,17 @@ The plugin stores no files outside its installed folder.
 ```sh
 npm install
 npm run typecheck
-npm run build           # bundles src/ and web/ into dist/, which is committed
+npm run build           # bundles src/ and web/ into plugin/dist/, which is committed
 npm run check:examples  # renders every Mermaid example in the skill with the pinned pele
 ```
 
-`dist/` is committed because Codex runs plugins without installing dependencies. Rebuild it after changing `src/`
-or `web/`, and keep the version in `package.json`, `plugin.json`, `.claude-plugin/plugin.json` and `src/server.ts`
-in step. Tested hosts and versions are in [docs/compatibility.md](docs/compatibility.md).
+Users install only the `plugin/` folder, which holds the manifests, the skill and the bundled server; the build
+tools at the repository root never reach them. `plugin/dist/` is committed because Codex runs plugins without
+installing dependencies. Rebuild it after changing `src/` or `web/`, and keep the version in `package.json`,
+`plugin/plugin.json`, `plugin/.claude-plugin/plugin.json` and `src/server.ts` in step. Tested hosts and versions
+are in [docs/compatibility.md](docs/compatibility.md).
 
 ## License
 
 [MIT](LICENSE). Pele Board is not affiliated with pele or Obsidian. Licenses of bundled libraries are in
-[dist/THIRD_PARTY_LICENSES.txt](dist/THIRD_PARTY_LICENSES.txt).
+[plugin/dist/THIRD_PARTY_LICENSES.txt](plugin/dist/THIRD_PARTY_LICENSES.txt).

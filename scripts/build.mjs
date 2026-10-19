@@ -1,4 +1,4 @@
-// Bundles the MCP server and copies the board page into dist/, which is committed so that
+// Bundles the MCP server and copies the board page into plugin/dist/, which is committed so that
 // installed plugins run without an npm install.
 import { cp, mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { createRequire } from 'node:module';
@@ -7,10 +7,10 @@ import { build } from 'esbuild';
 
 const require = createRequire(import.meta.url);
 
-await rm('dist', { recursive: true, force: true });
+await rm('plugin/dist', { recursive: true, force: true });
 const { metafile } = await build({
   entryPoints: ['src/server.ts'],
-  outfile: 'dist/server.mjs',
+  outfile: 'plugin/dist/server.mjs',
   bundle: true,
   minify: true,
   metafile: true,
@@ -20,10 +20,11 @@ const { metafile } = await build({
   legalComments: 'none',
   banner: { js: "import { createRequire } from 'node:module'; const require = createRequire(import.meta.url);" },
 });
-await mkdir('dist/web', { recursive: true });
-await cp('web', 'dist/web', { recursive: true });
-await cp(require.resolve('pele/global'), 'dist/web/pele.global.js');
-await writeFile('dist/THIRD_PARTY_LICENSES.txt', await notices(['pele', ...bundledPackages(metafile)]));
+await mkdir('plugin/dist/web', { recursive: true });
+await cp('web', 'plugin/dist/web', { recursive: true });
+await cp(require.resolve('pele/global'), 'plugin/dist/web/pele.global.js');
+await cp('LICENSE', 'plugin/LICENSE');
+await writeFile('plugin/dist/THIRD_PARTY_LICENSES.txt', await notices(['pele', ...bundledPackages(metafile)]));
 
 function bundledPackages({ inputs }) {
   const names = Object.keys(inputs)

@@ -5,7 +5,7 @@
   "plugins": [
     {
       "name": "pele-board",
-      "source": "./",
+      "source": "./plugin",
       "description": "Lets your agent show plans, processes, architecture and progress as live diagrams in your browser."
     }
   ]

@@ -6,9 +6,9 @@ import { PeleError, render } from 'pele';
 
 let failures = 0;
 let count = 0;
-for (const entry of await readdir('skills', { recursive: true })) {
+for (const entry of await readdir('plugin/skills', { recursive: true })) {
   if (!entry.endsWith('.md')) continue;
-  const text = await readFile(join('skills', entry), 'utf8');
+  const text = await readFile(join('plugin/skills', entry), 'utf8');
   for (const [, source] of text.matchAll(/```mermaid\r?\n([\s\S]*?)```/g)) {
     count++;
     try {

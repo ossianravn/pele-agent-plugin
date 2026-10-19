@@ -12,8 +12,6 @@ Observed behavior, not promises. Add a row when a host, version or install path 
 
 ## Not yet exercised
 
-- Installing from the GitHub repository in either host. Claude Code runs its own dependency install for Git-hosted
-  plugins that ship `package.json` and a lockfile; this package has only devDependencies and needs none at runtime.
 - The Codex app's Plugins screen, and the skill triggering in a live Codex turn after a real install.
 - macOS and Linux (browser opening uses `open` and `xdg-open`).
 
@@ -27,4 +25,7 @@ Checked 2026-10-19 against <https://code.claude.com/docs/en/plugins/manifest-ref
 - Codex reads root `plugin.json` only when its `$schema` is the Agent Plugins URL, and always reads root `mcp.json`.
   It starts the server with cwd set to the plugin root and does not pass the parent environment through, so the
   board shows no project name under Codex.
-- Codex does not install dependencies, so `dist/` is committed and self-contained.
+- Codex does not install dependencies, so `plugin/dist/` is committed and self-contained.
+- Claude Code runs `npm` in a Git-installed plugin whose root has `package.json` and a lockfile, and installs
+  devDependencies too: with the plugin at the repository root, a GitHub install pulled 75 MB of build tools.
+  The plugin therefore lives in `plugin/`, which has no `package.json`.
