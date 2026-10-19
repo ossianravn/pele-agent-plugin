@@ -8,6 +8,8 @@ Observed behavior, not promises. Add a row when a host, version or install path 
 | 2026-10-19 | Claude Code 2.1.303 | Windows 11 | `--plugin-dir` on the staged package | One headless turn | Skill fired, `show_diagram` called with status classes and caption |
 | 2026-10-19 | Codex CLI 0.163.0 | Windows 11 | Local marketplace, isolated `CODEX_HOME` | `codex plugin marketplace add`, `codex plugin add`, `codex mcp list`, `codex debug prompt-input` | Pass: installed to cache, server registered with cwd = plugin root, skill listed in the model prompt |
 | 2026-10-19 | Codex CLI 0.163.0 | Windows 11 | Server attached with `-c mcp_servers…` (no skill) | Two `codex exec` turns | Unprompted: answered with Mermaid in chat. Asked for the board: one correct `show_diagram` call |
+| 2026-10-19 | Claude Code 2.1.303 | Windows 11 | GitHub `ossianravn/pele-agent-plugin` @ 15156c8 (private), isolated profile | Marketplace add, install, `plugin details`, installed server started and called | Pass: 2.1 MB install, no `node_modules` |
+| 2026-10-19 | Codex CLI 0.163.0 | Windows 11 | GitHub @ 15156c8 (private), isolated `CODEX_HOME` | Marketplace add, `plugin add`, `codex mcp list`, installed server started and called | Pass |
 | 2026-10-19 | Headless Chromium (Playwright 1.64) | Windows 11 | Built `dist/` | Board at 1440 and 390 px, light and dark; live update, follow and unread behavior | Pass |
 
 ## Not yet exercised
