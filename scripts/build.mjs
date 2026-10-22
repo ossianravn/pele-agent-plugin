@@ -3,7 +3,7 @@
 import { cp, mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { createRequire } from 'node:module';
 import { join } from 'node:path';
-import { build } from 'esbuild';
+import { build, transform } from 'esbuild';
 
 const require = createRequire(import.meta.url);
 
@@ -20,6 +20,8 @@ const { metafile } = await build({
   legalComments: 'none',
   banner: { js: "import { createRequire } from 'node:module'; const require = createRequire(import.meta.url);" },
 });
+// The board script ships as written; parsing it here makes a syntax error fail the build.
+await transform(await readFile('web/board.js', 'utf8'), { loader: 'js' });
 await mkdir('plugin/dist/web', { recursive: true });
 await cp('web', 'plugin/dist/web', { recursive: true });
 await cp(require.resolve('pele/global'), 'plugin/dist/web/pele.global.js');

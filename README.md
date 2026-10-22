@@ -98,7 +98,7 @@ On the board you can:
 - pick any diagram from the session in the sidebar; the view follows the newest update until you pick an older
   one, and a dot marks diagrams that changed since you looked
 - zoom and pan large diagrams with the buttons, a pinch, or Ctrl/⌘ and the scroll wheel
-- copy a diagram's Mermaid source, or download it as an SVG in the current light or dark colors
+- copy a diagram's Mermaid source, or download it as an SVG or a high-resolution PNG in the current light or dark colors
 
 The board belongs to one agent session. When the session ends, the open page keeps showing the last diagrams and
 says it is offline.

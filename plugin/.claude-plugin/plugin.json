@@ -1,7 +1,7 @@
 {
   "name": "pele-board",
   "displayName": "Pele Board",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Lets your agent show plans, processes, architecture and progress as live diagrams in your browser.",
   "author": {
     "name": "Ossian Ravn",

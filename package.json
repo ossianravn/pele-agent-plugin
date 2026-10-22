@@ -1,6 +1,6 @@
 {
   "name": "pele-board",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "Lets Claude Code and Codex show you plans, processes and architecture as live diagrams.",
   "license": "MIT",

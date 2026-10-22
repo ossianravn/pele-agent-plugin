@@ -5,7 +5,7 @@ import { z } from 'zod';
 import { Board, projectName } from './board.js';
 import { checkDiagram, describeError } from './diagram.js';
 
-const VERSION = '0.1.0';
+const VERSION = '0.2.0';
 
 const INSTRUCTIONS = `Shows Mermaid diagrams to the user on a live page in their browser, rendered by pele.
 Use show_diagram when a picture explains work better than prose: a plan, a process, an architecture,
@@ -84,10 +84,15 @@ server.registerTool(
   },
 );
 
+// Letters that Unicode normalization does not split into a base letter and an accent.
+const LETTERS: Record<string, string> = { æ: 'ae', ø: 'o', œ: 'oe', ß: 'ss', đ: 'd', ł: 'l', þ: 'th' };
+
 function slug(title: string): string {
   const base = title
-    .normalize('NFKD')
     .toLowerCase()
+    .replace(/[æøœßđłþ]/g, (letter) => LETTERS[letter])
+    .normalize('NFKD')
+    .replace(/\p{M}/gu, '')
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '')
     .slice(0, 64)

@@ -188,26 +188,72 @@ const STATUS_RULES = [...document.styleSheets]
   .map((rule) => rule.cssText)
   .join('\n');
 
-/** Saves the diagram as it looks now, with the theme's colors fixed into the file. */
-$('download').addEventListener('click', () => {
+/** The diagram as a standalone SVG, with the theme's current colors fixed into the file. */
+function exportSvg() {
   const svg = stage.querySelector('svg.pele');
-  const diagram = diagrams.get(selectedId);
-  if (!svg || !diagram) return;
+  if (!svg) return null;
   const copy = svg.cloneNode(true);
-  copy.removeAttribute('style');
   const computed = getComputedStyle(stage);
   const variables = EXPORTED_VARIABLES.map((name) => `${name}:${computed.getPropertyValue(name).trim()}`).join(';');
   copy.setAttribute('style', `${variables};${svg.getAttribute('style') ?? ''};background:var(--pele-bg)`);
   const style = document.createElementNS('http://www.w3.org/2000/svg', 'style');
   style.textContent = STATUS_RULES;
   copy.prepend(style);
+  const { width, height } = svg.viewBox.baseVal;
+  return {
+    markup: new XMLSerializer().serializeToString(copy),
+    width,
+    height,
+    background: computed.getPropertyValue('--pele-bg').trim(),
+  };
+}
 
-  const blob = new Blob([new XMLSerializer().serializeToString(copy)], { type: 'image/svg+xml' });
+function save(blob, name) {
   const link = document.createElement('a');
   link.href = URL.createObjectURL(blob);
-  link.download = `${diagram.id}.svg`;
+  link.download = name;
   link.click();
   URL.revokeObjectURL(link.href);
+}
+
+function flash(button, text) {
+  const label = button.textContent;
+  button.textContent = text;
+  setTimeout(() => (button.textContent = label), 1500);
+}
+
+$('download').addEventListener('click', () => {
+  const exported = exportSvg();
+  if (exported) save(new Blob([exported.markup], { type: 'image/svg+xml' }), `${selectedId}.svg`);
+});
+
+// Twice the diagram's natural size, so the image stays sharp in documents and slides.
+const PNG_SCALE = 2;
+const PNG_MARGIN = 24;
+
+$('download-png').addEventListener('click', () => {
+  const exported = exportSvg();
+  if (!exported) return;
+  const button = $('download-png');
+  const image = new Image();
+  image.onload = () => {
+    const canvas = document.createElement('canvas');
+    canvas.width = Math.ceil((exported.width + PNG_MARGIN * 2) * PNG_SCALE);
+    canvas.height = Math.ceil((exported.height + PNG_MARGIN * 2) * PNG_SCALE);
+    const context = canvas.getContext('2d');
+    context.scale(PNG_SCALE, PNG_SCALE);
+    context.fillStyle = exported.background;
+    context.fillRect(0, 0, canvas.width, canvas.height);
+    context.drawImage(image, PNG_MARGIN, PNG_MARGIN, exported.width, exported.height);
+    try {
+      canvas.toBlob((blob) => (blob ? save(blob, `${selectedId}.png`) : flash(button, 'PNG failed')), 'image/png');
+    } catch {
+      // A diagram that embeds images from the web can't be read back from a canvas.
+      flash(button, 'PNG failed');
+    }
+  };
+  image.onerror = () => flash(button, 'PNG failed');
+  image.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(exported.markup)}`;
 });
 
 setInterval(() => {
