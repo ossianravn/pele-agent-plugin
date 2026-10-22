@@ -119,7 +119,9 @@ repository. The others show what the board displays for common requests.
   <img alt="What happens on show_diagram: The server renders every diagram with pele before the page sees it, so the agent gets syntax errors and the user never sees a broken diagram. Diagrams live only in memory, served on 127.0.0.1." src="docs/examples/codebase-tour-light.png" width="680">
 </picture>
 
-A real Claude Code run on this repository: it read the source and drew this, plus a second diagram of the build, in one turn.
+**What happens on show_diagram.** The server renders every diagram with pele before the page sees it, so the agent gets syntax errors and the user never sees a broken diagram. Diagrams live only in memory, served on 127.0.0.1.
+
+<sub>A real Claude Code run on this repository: it read the source and drew this, plus a second diagram of the build, in one turn.</sub>
 
 <details>
 <summary>Mermaid source</summary>
@@ -163,7 +165,7 @@ sequenceDiagram
   <img alt="Why a double click charges twice: Both requests read the order as unpaid before either marks it paid. An idempotency key on the charge, or a row lock on the order, closes the gap." src="docs/examples/race-condition-light.png" width="680">
 </picture>
 
-Sequence diagrams make timing bugs visible: here two requests pass the same check before either one writes.
+**Why a double click charges twice.** Both requests read the order as unpaid before either marks it paid. An idempotency key on the charge, or a row lock on the order, closes the gap.
 
 <details>
 <summary>Mermaid source</summary>
@@ -202,7 +204,7 @@ sequenceDiagram
   <img alt="Orders schema: An order belongs to one customer and has one or more line items. Refunds attach to payments, not to orders." src="docs/examples/data-model-light.png" width="680">
 </picture>
 
-Entity-relationship diagrams with keys, types and cardinality, drawn from migrations or ORM models.
+**Orders schema.** An order belongs to one customer and has one or more line items. Refunds attach to payments, not to orders.
 
 <details>
 <summary>Mermaid source</summary>
@@ -260,7 +262,7 @@ erDiagram
   <img alt="Incident response: The on-call engineer owns the incident from page to postmortem. Support only talks to customers once impact is confirmed." src="docs/examples/incident-process-light.png">
 </picture>
 
-Swimlanes show ownership: each step sits in the lane of whoever is responsible for it.
+**Incident response.** The on-call engineer owns the incident from page to postmortem. Support only talks to customers once impact is confirmed.
 
 <details>
 <summary>Mermaid source</summary>
@@ -298,7 +300,7 @@ swimlane-beta LR
   <img alt="Subscription lifecycle: Failed payments retry for 14 days inside Past due before the subscription is cancelled. A successful retry returns it to Active." src="docs/examples/lifecycle-light.png" width="680">
 </picture>
 
-State diagrams with nested states, drawn from the code that actually changes the status.
+**Subscription lifecycle.** Failed payments retry for 14 days inside Past due before the subscription is cancelled. A successful retry returns it to Active.
 
 <details>
 <summary>Mermaid source</summary>
@@ -332,7 +334,7 @@ stateDiagram-v2
   <img alt="Release 2.0 schedule: The API migration is the critical path: the SDK and the docs both wait for it, so a slip there moves the launch." src="docs/examples/release-plan-light.png">
 </picture>
 
-Gantt charts with dependencies, work in progress and the launch milestone.
+**Release 2.0 schedule.** The API migration is the critical path: the SDK and the docs both wait for it, so a slip there moves the launch.
 
 <details>
 <summary>Mermaid source</summary>
@@ -364,7 +366,7 @@ gantt
   <img alt="Job queue options: pg-boss fits best for the least effort because we already run Postgres. Temporal fits better only if workflows become long-running." src="docs/examples/compare-options-light.png">
 </picture>
 
-A quadrant chart places each option on the two axes that matter for the decision.
+**Job queue options.** pg-boss fits best for the least effort because we already run Postgres. Temporal fits better only if workflows become long-running.
 
 <details>
 <summary>Mermaid source</summary>
@@ -396,7 +398,7 @@ quadrantChart
   <img alt="Why the end-to-end suite is flaky: Two causes explain most failures: tests that share one seeded database, and fixed sleeps that lose to slow CI runners." src="docs/examples/root-cause-light.png">
 </picture>
 
-An Ishikawa (fishbone) diagram groups what the agent found by category.
+**Why the end-to-end suite is flaky.** Two causes explain most failures: tests that share one seeded database, and fixed sleeps that lose to slow CI runners.
 
 <details>
 <summary>Mermaid source</summary>
@@ -427,7 +429,7 @@ ishikawa-beta
   <img alt="Plan: migrate class components to hooks: One researcher lists the components, three workers each migrate a share in parallel, and a reviewer runs the tests before opening a PR." src="docs/examples/agent-plan-light.png">
 </picture>
 
-Agentflow diagrams show agents, their tools and the hand-offs between them, so you can check a plan before it runs.
+**Plan: migrate class components to hooks.** One researcher lists the components, three workers each migrate a share in parallel, and a reviewer runs the tests before opening a PR.
 
 <details>
 <summary>Mermaid source</summary>
