@@ -23,9 +23,14 @@ const TYPE_NAMES = {
   gantt: 'Gantt',
   journey: 'User journey',
   xychart: 'XY chart',
-  quadrant: 'Quadrant chart',
-  git: 'Git graph',
-  treeview: 'Tree view',
+  quadrantChart: 'Quadrant chart',
+  gitGraph: 'Git graph',
+  treeView: 'Tree view',
+  mindmap: 'Mind map',
+  c4: 'C4',
+  eventmodeling: 'Event modeling',
+  usecase: 'Use case',
+  wardley: 'Wardley map',
 };
 
 function typeName(type) {
